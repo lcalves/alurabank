@@ -5,6 +5,7 @@ class NegociacaoController{
     private _inputValor: HTMLInputElement;
     private _negociacoes = new Negociacoes();
     private _negociacoesView = new NegociacoesView('#negociacoesView');
+    private _mensagemVire = new MensagemView('#mensagemView');
 
 
     constructor(){
@@ -23,6 +24,7 @@ class NegociacaoController{
             );
             this._negociacoes.adiciona(negociacao);
             this._negociacoesView.update(this._negociacoes);
+            this._mensagemVire.update('Negociação adicionado com sucesso');
             
     }
 }
