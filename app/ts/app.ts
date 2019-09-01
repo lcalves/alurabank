@@ -1,3 +1,4 @@
 const controller = new NegociacaoController();
 
-document.querySelector('.form').addEventListener('submit', controller.adiciona.bind(controller))
+//Utilizando JQquery para compatibilidade com aplicativos android antigos
+$('.form').submit(controller.adiciona.bind(controller));
