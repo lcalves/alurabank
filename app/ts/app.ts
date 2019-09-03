@@ -1,3 +1,5 @@
+import { NegociacaoController } from './controllers/NegociacaoController';
+
 const controller = new NegociacaoController();
 
 //Utilizando JQquery para compatibilidade com aplicativos android antigos
