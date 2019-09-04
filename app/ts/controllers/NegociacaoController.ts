@@ -8,8 +8,8 @@ export class NegociacaoController{
     private _inputQuantidade: JQuery;
     private _inputValor: JQuery;
     private _negociacoes = new Negociacoes();
-    private _negociacoesView = new NegociacoesView('#negociacoesView');
-    private _mensagemVire = new MensagemView('#mensagemView');
+    private _negociacoesView = new NegociacoesView('#negociacoesView', true);
+    private _mensagemView = new MensagemView('#mensagemView');
 
 
     constructor(){
@@ -20,15 +20,38 @@ export class NegociacaoController{
     }
     
     adiciona(event: Event){
+        
         event.preventDefault();
+
+        let data = new Date(this._inputData.val().replace(/-/g, ','))
+    
+        if(this.isNotUtilDay(data)){
+            this._mensagemView.update('Data não pode ser Sabado ou Domingo')
+            return
+        }
+
         const negociacao = new Negociacao(
-            new Date(this._inputData.val().replace(/-/g, ',')), 
+            data, 
             parseInt(this._inputQuantidade.val()),
             parseFloat(this._inputValor.val())
             );
             this._negociacoes.adiciona(negociacao);
             this._negociacoesView.update(this._negociacoes);
-            this._mensagemVire.update('Negociação adicionado com sucesso');
+            this._mensagemView.update('Negociação adicionado com sucesso');
             
     }
+
+    private isNotUtilDay(data: Date): boolean{
+        return (data.getDay() === DiaDaSemana.Sabado || data.getDay() === DiaDaSemana.Domingo)
+    }
+}
+
+enum DiaDaSemana{
+    Domingo,
+    Segunda,
+    Terca,
+    Quarta,
+    Quinta,
+    Sexta,
+    Sabado
 }
