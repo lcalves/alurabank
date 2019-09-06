@@ -1,3 +1,4 @@
 export * from './Negociacao'
 export * from './Negociacoes'
-export * from './NegociaoParcial'
+export * from './NegociacaoParcial'
+export * from './Imprimivel'
